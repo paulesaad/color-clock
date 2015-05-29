@@ -24,13 +24,14 @@ var findClock = function() {
     var colorScale = currentTime.map(function(v, i) {
         return Math.floor(v / range[i] * 255)
     })
-    var color = `rgb(${colorScale.join(',')})`
     //convert colorScale into hex notation
     var hexColor = colorScale.map(function(v){
     	return v.toString(16).toUpperCase()
     })
     hexColor = zeroString(hexColor)
+    var color = `#${hexColor.replace(/:/g, '')}`
     container.style['background'] = color
+
     container.querySelector("hr").width = `${((currentTime[2] / range[2]) * 100)}%`
 
     currentTime = zeroString(currentTime)
